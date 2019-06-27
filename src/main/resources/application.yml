@@ -1,0 +1,9 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/taxidb
+    username: taxiuser
+    password: taxipwd
+  jpa:
+    hibernate.ddl-auto: update
+    generate-ddl: true
+    show-sql: true
