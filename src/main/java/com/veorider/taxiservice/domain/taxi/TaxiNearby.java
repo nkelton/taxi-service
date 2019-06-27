@@ -1,4 +1,4 @@
-package com.veorider.taxiservice.domain.customer;
+package com.veorider.taxiservice.domain.taxi;
 
 import lombok.Getter;
 import lombok.Setter;

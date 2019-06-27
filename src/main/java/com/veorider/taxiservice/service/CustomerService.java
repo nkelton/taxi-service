@@ -1,10 +1,8 @@
 package com.veorider.taxiservice.service;
 
-import com.veorider.taxiservice.domain.customer.AvailableTaxis;
-import com.veorider.taxiservice.domain.customer.TaxiNearby;
+import com.veorider.taxiservice.domain.customer.TaxiDecision;
 import com.veorider.taxiservice.domain.customer.TaxiRequest;
 import com.veorider.taxiservice.repository.CustomerRepository;
-import java.util.List;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -15,12 +13,11 @@ public class CustomerService {
     this.customerRepository = customerRepository;
   }
 
-  public List<TaxiNearby> retrieveNearbyTaxi(AvailableTaxis availableTaxis) {
-    return null;
+  public boolean decideRequest(String phoneNumber, TaxiDecision taxiDecision){
+    return false;
   }
 
   public String requestTaxi(String phoneNumber, TaxiRequest taxiRequest){
     return null;
   }
-
 }

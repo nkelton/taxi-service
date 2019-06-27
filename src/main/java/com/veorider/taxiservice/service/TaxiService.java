@@ -1,5 +1,7 @@
 package com.veorider.taxiservice.service;
 
+import com.veorider.taxiservice.domain.taxi.CustomerLocation;
+import com.veorider.taxiservice.domain.taxi.TaxiNearby;
 import com.veorider.taxiservice.domain.taxi.CustomerDetails;
 import com.veorider.taxiservice.domain.taxi.TaxiForDatabase;
 import com.veorider.taxiservice.domain.taxi.TaxiForUpdate;
@@ -37,7 +39,7 @@ public class TaxiService {
    *
    */
 
-  public TaxiForDatabase updateTaxi(String plateNumber, TaxiForUpdate taxiForUpdate) {
+  public void updateTaxi(String plateNumber, TaxiForUpdate taxiForUpdate) {
     TaxiForDatabase taxiForDatabase = taxiRepository.findByPlateNumber(plateNumber);
 
     //TODO refactor so that Lat and Lng are optional
@@ -50,9 +52,7 @@ public class TaxiService {
     if(taxiForUpdate.getLng() != null) {
       taxiForDatabase.setLng(taxiForUpdate.getLng());
     }
-
     taxiRepository.save(taxiForDatabase);
-    return taxiRepository.findByPlateNumber(plateNumber);
   }
 
   /***************TODO
@@ -63,5 +63,10 @@ public class TaxiService {
   public List<CustomerDetails> retrieveMostRecentCustomerRequest(final String plateNumber) {
     return null;
   }
+
+  public List<TaxiNearby> retrieveNearbyTaxi(CustomerLocation customerLocation) {
+    return null;
+  }
+
 
 }

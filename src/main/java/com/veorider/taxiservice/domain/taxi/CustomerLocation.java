@@ -1,11 +1,11 @@
-package com.veorider.taxiservice.domain.customer;
+package com.veorider.taxiservice.domain.taxi;
 
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class AvailableTaxis {
+public class CustomerLocation {
   private float distance;
   private float lat;
   private float lng;

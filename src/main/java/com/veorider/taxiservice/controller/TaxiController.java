@@ -1,5 +1,7 @@
 package com.veorider.taxiservice.controller;
 
+import com.veorider.taxiservice.domain.taxi.CustomerLocation;
+import com.veorider.taxiservice.domain.taxi.TaxiNearby;
 import com.veorider.taxiservice.domain.taxi.CustomerDetails;
 import com.veorider.taxiservice.domain.taxi.TaxiForDatabase;
 import com.veorider.taxiservice.domain.taxi.TaxiForUpdate;
@@ -36,9 +38,9 @@ public class TaxiController {
   /* PROJECT RELATED */
 
   @PatchMapping("/{plateNumber}")
-  public TaxiForDatabase updateTaxi(@PathVariable("plateNumber") final String plateNumber,
+  public void updateTaxi(@PathVariable("plateNumber") final String plateNumber,
       @RequestBody final TaxiForUpdate taxiForUpdate) {
-    return taxiService.updateTaxi(plateNumber, taxiForUpdate);
+    taxiService.updateTaxi(plateNumber, taxiForUpdate);
   }
 
   @GetMapping("/{plateNumber}/request")
@@ -46,7 +48,9 @@ public class TaxiController {
     return taxiService.retrieveMostRecentCustomerRequest(plateNumber);
   }
 
-
-
+  @GetMapping("/nearby")
+  public List<TaxiNearby> retrieveNearbyTaxi(@RequestBody final CustomerLocation customerLocation) {
+    return taxiService.retrieveNearbyTaxi(customerLocation);
+  }
 
 }
