@@ -13,15 +13,8 @@ services:
     expose:
       - '3306'
 
-  customer-db:
-    image: mysql:5.7
-    restart: always
-    environment:
-      MYSQL_DATABASE: 'customerdb'
-      MYSQL_USER: 'customeruser'
-      MYSQL_PASSWORD: 'customerpwd'
-      MYSQL_ROOT_PASSWORD: 'rootpwd'
+  rabbitmq:
+    image: rabbitmq:management
     ports:
-      - '3307:3306'
-    expose:
-      - '3306'
+      - "5672:5672"
+      - "15672:15672"

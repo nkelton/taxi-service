@@ -1,12 +1,14 @@
 package com.veorider.taxiservice.controller;
 
 import com.veorider.taxiservice.domain.taxi.CustomerLocation;
-import com.veorider.taxiservice.domain.taxi.TaxiNearby;
-import com.veorider.taxiservice.domain.taxi.CustomerDetails;
 import com.veorider.taxiservice.domain.taxi.TaxiForDatabase;
-import com.veorider.taxiservice.domain.taxi.TaxiForUpdate;
+import com.veorider.taxiservice.domain.taxi.request.TaxiForUpdate;
+import com.veorider.taxiservice.domain.taxi.response.Customer;
+import com.veorider.taxiservice.domain.taxi.response.TaxiNearby;
 import com.veorider.taxiservice.service.TaxiService;
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,9 +16,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.context.request.async.DeferredResult;
 
 @RestController
 @RequestMapping(value = "/api/taxi")
+@Slf4j
 public class TaxiController {
 
   private TaxiService taxiService;
@@ -31,11 +35,9 @@ public class TaxiController {
   }
 
   @PostMapping(value = "/persist")
-  public TaxiForDatabase persist(@RequestBody final TaxiForDatabase taxi) {
-    return taxiService.persist(taxi);
+  public void persist(@RequestBody final List<TaxiForDatabase> taxis) {
+    taxiService.persist(taxis);
   }
-
-  /* PROJECT RELATED */
 
   @PatchMapping("/{plateNumber}")
   public void updateTaxi(@PathVariable("plateNumber") final String plateNumber,
@@ -44,8 +46,14 @@ public class TaxiController {
   }
 
   @GetMapping("/{plateNumber}/request")
-  public List<CustomerDetails> retrieveMostRecentCustomerRequest(@PathVariable("plateNumber")final String plateNumber) {
-    return taxiService.retrieveMostRecentCustomerRequest(plateNumber);
+  public DeferredResult<List<Customer>> retrieveMostRecentCustomerRequest(@PathVariable("plateNumber")final String plateNumber) {
+    Long timeOutInMilliSec = 5000L;
+    String timeOutResp = "Request has timed out!";
+    DeferredResult<List<Customer>> deferredResult = new DeferredResult<>(timeOutInMilliSec,timeOutResp);
+    CompletableFuture.runAsync(()->{
+      deferredResult.setResult(taxiService.retrieveMostRecentCustomerRequest(plateNumber));
+    });
+    return deferredResult;
   }
 
   @GetMapping("/nearby")

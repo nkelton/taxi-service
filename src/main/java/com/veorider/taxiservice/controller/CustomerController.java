@@ -1,8 +1,12 @@
 package com.veorider.taxiservice.controller;
 
-import com.veorider.taxiservice.domain.customer.TaxiDecision;
-import com.veorider.taxiservice.domain.customer.TaxiRequest;
+import com.veorider.taxiservice.domain.customer.CustomerForDatabase;
+import com.veorider.taxiservice.domain.customer.request.TaxiDecision;
+import com.veorider.taxiservice.domain.customer.request.TaxiRequest;
 import com.veorider.taxiservice.service.CustomerService;
+import java.util.List;
+import java.util.concurrent.Callable;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,6 +23,16 @@ public class CustomerController {
     this.customerService = customerService;
   }
 
+  @GetMapping(value = "/all")
+  public List<CustomerForDatabase> retrieveAll() {
+    return customerService.retrieveAll();
+  }
+
+  @PostMapping(value = "/persist")
+  public void persist(@RequestBody final List<CustomerForDatabase> customers) {
+    customerService.persist(customers);
+  }
+
   @PatchMapping("/{phoneNumber}/request")
   public boolean decideRequest(@PathVariable("phoneNumber") final String phoneNumber,
       @RequestBody final TaxiDecision taxiDecision) {
@@ -26,11 +40,13 @@ public class CustomerController {
   }
 
   @PostMapping("/{phoneNumber}/request")
-  public String requestTaxi(@PathVariable("phoneNumber") final String phoneNumber,
+  public Callable<String> requestTaxi(@PathVariable("phoneNumber") final String phoneNumber,
       @RequestBody final TaxiRequest taxiRequest) {
-    return customerService.requestTaxi(phoneNumber, taxiRequest);
+    try{
+      return () -> customerService.requestTaxi(phoneNumber, taxiRequest);
+    } catch (Exception e) {
+      return null;
+    }
   }
-
-
 
 }

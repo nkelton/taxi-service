@@ -1,4 +1,4 @@
-package com.veorider.taxiservice.domain.taxi;
+package com.veorider.taxiservice.domain.taxi.request;
 
 
 import com.fasterxml.jackson.annotation.JsonProperty;

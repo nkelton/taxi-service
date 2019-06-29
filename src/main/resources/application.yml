@@ -1,9 +1,17 @@
 spring:
+  mvc:
+    async:
+      request-timeout: 60000
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
   datasource:
     url: jdbc:mysql://localhost:3306/taxidb
     username: taxiuser
     password: taxipwd
   jpa:
-    hibernate.ddl-auto: update
+    hibernate.ddl-auto: create-drop
     generate-ddl: true
     show-sql: true

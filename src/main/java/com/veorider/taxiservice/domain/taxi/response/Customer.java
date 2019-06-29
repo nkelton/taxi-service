@@ -1,13 +1,14 @@
-package com.veorider.taxiservice.domain.taxi;
+package com.veorider.taxiservice.domain.taxi.response;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class CustomerDetails {
+@Builder
+public class Customer {
   private String phone;
   private float lat;
   private float lng;
-
 }

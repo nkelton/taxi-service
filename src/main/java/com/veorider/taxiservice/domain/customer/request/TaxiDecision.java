@@ -1,4 +1,4 @@
-package com.veorider.taxiservice.domain.customer;
+package com.veorider.taxiservice.domain.customer.request;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -7,4 +7,5 @@ import lombok.Setter;
 @Setter
 public class TaxiDecision {
   private Boolean accept;
+  private String plateNumber;
 }
