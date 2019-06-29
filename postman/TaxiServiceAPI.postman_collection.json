@@ -1,0 +1,294 @@
+{
+	"info": {
+		"_postman_id": "6c9c8a48-7252-441c-83e1-d8034ede062a",
+		"name": "TaxiServiceAPI",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Customer",
+			"item": [
+				{
+					"name": "Request Taxi",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"taxis\": [\"34r5ts\", \"ert43s\", \"ysa89f\"]\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/customer/2393453244/request",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"customer",
+								"2393453244",
+								"request"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Accept or Deny Customer Request",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"accept\": \"true\",\n\t\"plateNumber\": \"34r5ts\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/customer/2393453244/request",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"customer",
+								"2393453244",
+								"request"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Customers",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/customer/all",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"customer",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Customers",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[\n\t{\n\t\t\"phoneNumber\": \"2393453244\",\n\t\t\"lat\": 12.453,\n\t\t\"lng\": -70.43,\n\t\t\"acceptedStatus\": false\n\t},\n\t{\n\t\t\"phoneNumber\": \"813453244\",\n\t\t\"lat\": 78.144,\n\t\t\"lng\": 70.89,\n\t\t\"acceptedStatus\": false\n\t},\n\t{\n\t\t\"phoneNumber\": \"2362532441\",\n\t\t\"lat\": -8.143,\n\t\t\"lng\": 18.89,\n\t\t\"acceptedStatus\": false\n\t},\n\t{\n\t\t\"phoneNumber\": \"2393393244\",\n\t\t\"lat\": 54.223,\n\t\t\"lng\": 89.543,\n\t\t\"acceptedStatus\": false\n\t},\n\t{\n\t\t\"phoneNumber\": \"2559339327\",\n\t\t\"lat\": -78.123,\n\t\t\"lng\": 54.423,\n\t\t\"acceptedStatus\": false\n\t},\n\t{\n\t\t\"phoneNumber\": \"8763393114\",\n\t\t\"lat\": 63.897,\n\t\t\"lng\": 43.11,\n\t\t\"acceptedStatus\": false\n\t}\n]\n\n"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/customer/persist",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"customer",
+								"persist"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Taxi",
+			"item": [
+				{
+					"name": "Get Taxis",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/taxi/all",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"taxi",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Taxis",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[\n\t{\n\t\t\"plateNumber\": \"34r5ts\",\n\t\t\"available\": true,\n\t\t\"lat\": 12.123,\n\t\t\"lng\": -80.43\n\t},\n\t{\n\t\t\"plateNumber\": \"ert43s\",\n\t\t\"available\": true,\n\t\t\"lat\": 152.123,\n\t\t\"lng\": 42.43\n\t},\n\t{\n\t\t\"plateNumber\": \"ysa89f\",\n\t\t\"available\": true,\n\t\t\"lat\": 12.123,\n\t\t\"lng\": 80.43\n\t},\n\t{\n\t\t\"plateNumber\": \"vvb43a\",\n\t\t\"available\": false,\n\t\t\"lat\": 62.234,\n\t\t\"lng\": -90.1231\n\t},\n\t{\n\t\t\"plateNumber\": \"r43waq\",\n\t\t\"available\": false,\n\t\t\"lat\": 90.12,\n\t\t\"lng\": 4.92\n\t},\n\t{\n\t\t\"plateNumber\": \"09fsd4\",\n\t\t\"available\": false,\n\t\t\"lat\": 33.123,\n\t\t\"lng\": 9.09\n\t}\n]\n\n"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/taxi/persist",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"taxi",
+								"persist"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Taxi",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"available\": true,\n    \"lat\": 99.999,\n    \"lng\": 80.43\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/taxi/ysa89f/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"taxi",
+								"ysa89f",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Nearby Taxi",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"distance\": 10000,\n\t\"lat\": 53.435,\n\t\"lng\": 234.324\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/taxi/nearby/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"taxi",
+								"nearby",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Most Recent Customer Request",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/taxi/34r5ts/request",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"taxi",
+								"34r5ts",
+								"request"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
